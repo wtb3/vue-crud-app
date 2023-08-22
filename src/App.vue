@@ -1,8 +1,7 @@
-<!-- src/App.vue -->
 <template>
   <div id="app" class="small-container">
     <h1>Employees</h1>
-    <employee-table :employees="employees" />
+    <employee-table :employees="employees" @delete:employee="deleteEmployee" />
     <employee-form @add:employee="addEmployee" />
   </div>
 </template>
@@ -45,6 +44,9 @@ export default {
       const newEmployee = { ...employee, id };
 
       this.employees = [...this.employees, newEmployee];
+    },
+    deleteEmployee(id) {
+      this.employees = this.employees.filter((employee) => employee.id !== id);
     },
   },
 };
